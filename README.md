@@ -10,13 +10,13 @@ This repository contains my Flutter projects. Currently, I am working on the "Pr
 - **Features**:
   - Profile picture
   - Personal details display
-  - Editable fields for user information
+
 - **Technologies Used**:
   - Flutter
   - Dart
 
 
-![Profile Project Screenshot](https://ibb.co/zWfhJgzX)
+![Profile Project Screenshot](https://i.postimg.cc/v89N5vdg/Screenshot-20250205-150514.png)
 
 ---
 
