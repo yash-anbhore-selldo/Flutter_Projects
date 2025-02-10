@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:test2/bmi_calculator.dart';
+import 'package:test2/dice_screen.dart';
+import 'package:test2/musicapp.dart';
+import 'package:test2/note.dart';
+import 'package:test2/quiz_app.dart';
+import 'package:test2/test.dart';
+import 'package:test2/weather.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,104 +16,7 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          backgroundColor: Colors.white10,
-          // appBar: AppBar(
-          //   // centerTitle: true,
-          //   // backgroundColor: Colors.teal,
-          //   title: Text(
-          //     "Profile",
-          //     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-          //   ),
-          // ),
-          body: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // SizedBox(
-                //   height: 30,
-                // ),
-                ListTile(
-                  // this helps to remove the padding of parent Padding widget
-                  contentPadding: EdgeInsets.zero,
-                  leading: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
-                  ),
-                  trailing: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.white),
-                    child: Icon(
-                      Icons.light_mode,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                CircleAvatar(
-                  // backgroundColor: Colors.black,
-                  radius: 60,
-                  backgroundImage: AssetImage('images/profile_pic.jpg'),
-                ),
-
-                // SizedBox for spacing
-                SizedBox(height: 10),
-                Text(
-                  "Yash Anbhore",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontFamily: 'ShortBaby'),
-                ),
-                Text(
-                  "yash_anbohre@sell.do",
-                  style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white70,
-                      fontSize: 15,
-                      fontFamily: 'ShortBaby'),
-                ),
-                SizedBox(height: 20),
-
-                // we could have used Column but it causes
-                // the overflow issue
-                // expanded handles multiple card if it exceeds the screen
-                // it allows scrollable
-                Expanded(
-                    child: ListView(
-                  children: [
-                    buildCard(Icons.person, "Profile"),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    buildCard(Icons.share, "Invite"),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    buildCard(Icons.settings, "Settings"),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    buildCard(Icons.help, "Help and Support"),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    buildCard(Icons.logout, "Logout"),
-                  ],
-                ))
-              ],
-            ),
-          )
-          // appBar: ,
-          ),
-    );
-  }
-
-  Widget buildCard(IconData icon, String text) {
+  Widget buildCard(IconData icon, String text, BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       elevation: 3,
@@ -125,6 +35,115 @@ class MyApp extends StatelessWidget {
         trailing: Icon(
           Icons.arrow_forward_rounded,
           color: Colors.white54,
+        ),
+        onTap: () {
+          // Directly use the context from the onTap callback
+          if (text == "Dice Game") {
+            // Navigator.push is used with the context here directly
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DiceScreen()),
+            );
+          } else if (text == "Weather") {
+            // Navigator.push is used with the context here directly
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WeatherScreen()),
+            );
+          } else if (text == "Note") {
+            // Navigator.push is used with the context here directly
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WeatherScreen()),
+            );
+          } else if (text == "Quiz App") {
+            // Navigator.push is used with the context here directly
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => QuizApp()),
+            );
+          } else if (text == "Bmi") {
+            // Navigator.push is used with the context here directly
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BmiCalculator()),
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white10,
+        body: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.white,
+                ),
+                trailing: Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: Icon(
+                    Icons.light_mode,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: AssetImage('assets/images/profile_pic.jpg'),
+              ),
+              SizedBox(height: 10),
+              Text(
+                "Yash Anbhore",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontFamily: 'ShortBaby'),
+              ),
+              Text(
+                "yash_anbohre@sell.do",
+                style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white70,
+                    fontSize: 15,
+                    fontFamily: 'ShortBaby'),
+              ),
+              SizedBox(height: 20),
+              Expanded(
+                child: Builder(
+                  builder: (context) {
+                    return ListView(
+                      children: [
+                        buildCard(Icons.person, "Dice Game", context),
+                        SizedBox(height: 5),
+                        buildCard(Icons.share, "Weather", context),
+                        SizedBox(height: 5),
+                        buildCard(Icons.settings, "Note", context),
+                        SizedBox(height: 5),
+                        buildCard(Icons.help, "Quiz App", context),
+                        SizedBox(height: 5),
+                        buildCard(Icons.logout, "Bmi", context),
+                      ],
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

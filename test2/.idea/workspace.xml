@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3b1d660-8b8d-4202-bdcf-631cef3f9778" name="Changes" comment="" />
+    <list default="true" id="c3b1d660-8b8d-4202-bdcf-631cef3f9778" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Profile/images/dice1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Profile/images/dice2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Profile/images/dice3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Profile/images/dice4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Profile/images/dice5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Profile/images/dice6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Profile/lib/dice_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Profile/lib/musicapp.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/linux/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/windows/flutter/generated_plugins.cmake" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +30,21 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "yash-anbhore-selldo"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:yash-anbhore-selldo/Flutter_Projects.git",
+    "accountId": "6cb8c3f7-948c-452e-a791-c81b2826c59d"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -30,27 +62,13 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/yash/AndroidStudioProjects/Profile",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="profile" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="profile" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

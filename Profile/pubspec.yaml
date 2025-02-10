@@ -30,11 +30,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  audioplayers: ^6.1.1  # check for the latest version
+  syncfusion_flutter_gauges: ^28.2.4
+  geolocator: ^13.0.2
+  http: ^1.3.0
+  provider: ^6.1.2
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -52,7 +57,21 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - images/profile_pic.jpg
+    - assets/images/profile_pic.jpg
+    - assets/images/dice1.png
+    - assets/images/dice2.png
+    - assets/images/dice3.png
+    - assets/images/dice4.png
+    - assets/images/dice5.png
+    - assets/images/dice6.png
+    - assets/note1.wav
+    - assets/note2.wav
+    - assets/note3.wav
+    - assets/note4.wav
+    - assets/note5.wav
+    - assets/note6.wav
+    - assets/note7.wav
+
   fonts:
     - family: ShortBaby
       fonts:
