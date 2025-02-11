@@ -62,48 +62,50 @@ class _WeatherScreenState extends State<WeatherScreen> {
       appBar: AppBar(
         title: Text('Weather App'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                labelText: 'Enter city',
-                border: OutlineInputBorder(),
+      body: Expanded(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                  labelText: 'Enter city',
+                  border: OutlineInputBorder(),
+                ),
+                onSubmitted: (_) {
+                  setState(() {
+                    _city = _controller.text;
+                  });
+                  _getWeather();
+                },
               ),
-              onSubmitted: (_) {
-                setState(() {
-                  _city = _controller.text;
-                });
-                _getWeather();
-              },
-            ),
-            SizedBox(height: 20),
-            _isLoading
-                ? CircularProgressIndicator()
-                : Column(
-                    children: [
-                      Text(
-                        _temperature,
-                        style: TextStyle(fontSize: 36),
-                      ),
-                      Text(
-                        _description,
-                        style: TextStyle(fontSize: 24),
-                      ),
-                      Image.network(
-                        'https://openweathermap.org/img/wn/$_icon@2x.png',
-                      ),
-                    ],
-                  ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _getWeather,
-              child: Text('Get Weather'),
-            ),
-          ],
+              SizedBox(height: 20),
+              _isLoading
+                  ? CircularProgressIndicator()
+                  : Column(
+                      children: [
+                        Text(
+                          _temperature,
+                          style: TextStyle(fontSize: 36),
+                        ),
+                        Text(
+                          _description,
+                          style: TextStyle(fontSize: 24),
+                        ),
+                        Image.network(
+                          'https://openweathermap.org/img/wn/$_icon@2x.png',
+                        ),
+                      ],
+                    ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _getWeather,
+                child: Text('Get Weather'),
+              ),
+            ],
+          ),
         ),
       ),
     );

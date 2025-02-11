@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             // Navigator.push is used with the context here directly
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => WeatherScreen()),
+              MaterialPageRoute(builder: (context) => Weather()),
             );
           } else if (text == "Note") {
             // Navigator.push is used with the context here directly

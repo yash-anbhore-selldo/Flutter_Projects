@@ -10,6 +10,7 @@ class WeatherService {
         'https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric';
 
     final response = await http.get(Uri.parse(url));
+    print(response);
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
