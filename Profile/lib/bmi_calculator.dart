@@ -19,7 +19,6 @@ class _BmiCalculatorState extends State<BmiCalculator> {
 
   final textWeightController = TextEditingController();
 
-  // Utility method to build cards for gender selection, height, weight, and age
   Widget buildCard(double width, double height, Widget? child) {
     return Container(
       width: width,
@@ -47,7 +46,6 @@ class _BmiCalculatorState extends State<BmiCalculator> {
     });
   }
 
-  // BMI Category based on the calculated BMI
   String getBmiCategory() {
     if (bmi < 18.5) {
       return "Underweight";

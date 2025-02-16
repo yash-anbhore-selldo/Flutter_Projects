@@ -5,22 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3b1d660-8b8d-4202-bdcf-631cef3f9778" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Profile/images/dice1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Profile/images/dice2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Profile/images/dice3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Profile/images/dice4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Profile/images/dice5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Profile/images/dice6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Profile/lib/dice_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Profile/lib/musicapp.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Profile/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Profile/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Profile/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Profile/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Profile/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/pubspec.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bitcoin_tracker/lib/coin_data.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bitcoin_tracker/lib/modal_class/modal_rates_data.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bitcoin_tracker/lib/screens/price_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bitcoin_tracker/lib/services/get_rates_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../flutter_chat/android/app/google-services.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../flutter_chat/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../flutter_chat/lib/constants.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../flutter_chat/lib/screens/chat_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../flutter_chat/lib/screens/login_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../flutter_chat/lib/screens/registration_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../flutter_chat/lib/screens/welcome_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test_navigator/lib/screen_1.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../test_navigator/lib/screen_2.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../weather_app/lib/services/weather_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Profile/lib/bmi_calculator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/lib/bmi_calculator.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Profile/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Profile/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Profile/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../Profile/windows/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../api/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,18 +36,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "yash-anbhore-selldo"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;yash-anbhore-selldo&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:yash-anbhore-selldo/Flutter_Projects.git",
-    "accountId": "6cb8c3f7-948c-452e-a791-c81b2826c59d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:yash-anbhore-selldo/Flutter_Projects.git&quot;,
+    &quot;accountId&quot;: &quot;6cb8c3f7-948c-452e-a791-c81b2826c59d&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -65,7 +68,7 @@
     "git-widget-placeholder": "main",
     "io.flutter.reload.alreadyRun": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/yash/AndroidStudioProjects/Profile",
+    "last_opened_file_path": "/home/yash/AndroidStudioProjects/test2",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>

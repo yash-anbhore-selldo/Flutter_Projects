@@ -59,7 +59,8 @@ class _StudentListScreenState extends State<StudentListScreen> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(students[index].name),
-                  subtitle: Text('Roll No: ${students[index].rno} | Marks: ${students[index].marks} | Branch: ${students[index].branch}'),
+                  subtitle: Text(
+                      'Roll No: ${students[index].rno} | Marks: ${students[index].marks} | Branch: ${students[index].branch}'),
                 );
               },
             );
