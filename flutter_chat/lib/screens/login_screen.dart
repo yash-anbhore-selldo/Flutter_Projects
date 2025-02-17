@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat/screens/chat_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -95,6 +98,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: MaterialButton(
                   onPressed: () {
                     //Implement login functionality.
+                    if (FirebaseAuth.instance.currentUser != null) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChatScreen()));
+                    }
                   },
                   minWidth: 200.0,
                   height: 42.0,

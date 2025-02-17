@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_chat/screens/chat_screen.dart';
+import 'package:flutter_chat/screens/login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -11,6 +14,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _auth = FirebaseAuth.instance;
   String email = '';
   String password = '';
+  bool flag = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,22 +100,42 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               borderRadius: BorderRadius.all(Radius.circular(30.0)),
               elevation: 5.0,
               child: MaterialButton(
-                onPressed: () async {
-                  //Implement registration functionality.
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    if (newUser != null) {
-                      print(newUser);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ChatScreen()));
-                    }
-                  } catch (e) {
-                    print(e);
-                  }
-                },
+                onPressed: flag
+                    ? () async {
+                        setState(() {
+                          flag = false;
+                        });
+
+                        //Implement registration functionality.
+
+                        await _auth
+                            .createUserWithEmailAndPassword(
+                                email: email, password: password)
+                            .then((onValue) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
+                        }, onError: (e) {
+                          print(e);
+                        });
+                        // try {
+                        //   final newUser = await _auth
+                        //       .createUserWithEmailAndPassword(
+                        //           email: email, password: password)
+                        //       .whenComplete(() => Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder: (context) => LoginScreen())));
+                        // } catch (e) {
+                        //   print(e);
+                        // }
+
+                        flag = true;
+                      }
+                    : null,
+
+                //
                 minWidth: 200.0,
                 height: 42.0,
                 child: Text(
