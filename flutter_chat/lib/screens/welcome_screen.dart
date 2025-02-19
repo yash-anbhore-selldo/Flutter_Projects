@@ -3,7 +3,11 @@ import 'package:flutter_chat/screens/login_screen.dart';
 import 'package:flutter_chat/screens/registration_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static const id = 'welcome_screen';
+  final String showData;
+
+  const WelcomeScreen(this.showData, {Key? key}) : super(key: key);
+
+  static const String id = 'welcome_screen';
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -11,15 +15,33 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
-  AnimationController? controller;
+  late AnimationController controller;
+  late Animation<double> animation;
 
   @override
   void initState() {
+    super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 10),
+      duration: const Duration(seconds: 3),
     );
-    super.initState();
+
+    animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  void _navigateToScreen(Widget screen) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+      (route) => false, // Removes all previous routes
+    );
   }
 
   @override
@@ -27,74 +49,83 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        title: Text(
+          "Remote Config: ${widget.showData}",
+          style: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
       ),
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Center(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Hero(
                     tag: 'logo',
                     child: Container(
-                      child: Image.asset('images/logo.png'),
                       height: 60.0,
+                      child: Image.asset(
+                        'images/logo.png',
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
-                  Text(
-                    'Flash Chat',
-                    style: TextStyle(
+                  const SizedBox(width: 10),
+                  ScaleTransition(
+                    scale: animation,
+                    child: const Text(
+                      'Flash Chat',
+                      style: TextStyle(
                         fontSize: 45.0,
                         fontWeight: FontWeight.w900,
-                        color: Colors.black),
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 48.0,
-            ),
+            const SizedBox(height: 48.0),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                onPressed: () => _navigateToScreen(LoginScreen()),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightBlueAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                ),
+                child: const Text(
+                  'Log In',
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegistrationScreen()));
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                onPressed: () => _navigateToScreen(RegistrationScreen()),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
                   ),
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                ),
+                child: const Text(
+                  'Register',
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
             ),

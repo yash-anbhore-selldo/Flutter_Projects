@@ -6,6 +6,9 @@ import 'package:flutter_chat/constants.dart';
 import 'package:flutter_chat/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_chat/screens/profile_screen.dart';
+import 'package:flutter_chat/screens/welcome_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final _firestore = FirebaseFirestore.instance;
 var loggedInUser;
@@ -17,6 +20,8 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   var _controller = TextEditingController();
+
+  late SharedPreferences sharedPrefs;
 
   final _auth = FirebaseAuth.instance;
   String messageText = '';
@@ -32,12 +37,12 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-  // void getMessages() async {
-  //   var message = await _firestore.collection('messages').get();
-  //   for (var data in message.docs) {
-  //     print(data['text']);
-  //   }
-  // }
+  void logoutUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+
+    reDirectTo(context, () => WelcomeScreen("data"), state: this);
+  }
 
   void messageStream() async {
     await for (var snapshot in _firestore.collection('messages').snapshots()) {
@@ -52,6 +57,9 @@ class _ChatScreenState extends State<ChatScreen> {
     // TODO: implement initState
     super.initState();
     getCurrentUser();
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() => sharedPrefs = prefs);
+    });
     // getMessages();
     messageStream();
   }
@@ -63,12 +71,44 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+          child: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.message),
+            title: Text('Messages'),
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text('Profile'),
+            onTap: () => reDirectTo(context, () => ProfileScreen()),
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Settings'),
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Logout'),
+            onTap: () => logoutUser(),
+          ),
+        ],
+      )),
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
+              icon: Icon(
+                Icons.close,
+                color: Colors.black,
+              ),
+              onPressed: () async {
+                sharedPrefs = await SharedPreferences.getInstance();
+                sharedPrefs.setBool('isLoggedIn', false);
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => WelcomeScreen("ss")));
                 //Implement logout functionality
                 messageStream();
               }),
@@ -104,11 +144,14 @@ class _ChatScreenState extends State<ChatScreen> {
                       onPressed: () {
                         setState(() {
                           _controller.text = '';
+                          sharedPrefs.setString('text', messageText);
+                          sharedPrefs.setString('email', loggedInUser.email);
                         });
                         //Implement send functionality.
                         _firestore.collection('messages').add({
                           'text': messageText,
                           'sender': loggedInUser.email,
+                          'timestamp': FieldValue.serverTimestamp(),
                         });
                       },
                       child: Text(
@@ -131,7 +174,8 @@ class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('messages').snapshots(),
+        stream:
+            _firestore.collection('messages').orderBy('timestamp').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return CircularProgressIndicator(

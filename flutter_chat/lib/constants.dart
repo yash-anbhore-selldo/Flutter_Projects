@@ -18,3 +18,16 @@ const kMessageContainerDecoration = BoxDecoration(
     top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
   ),
 );
+
+void reDirectTo(BuildContext context, Widget Function() screenBuilder,
+    {State? state}) {
+  if (state?.mounted ?? true) {
+    // If state is provided, check mounted, otherwise proceed
+    Navigator.pushReplacement<void, void>(
+      context,
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) => screenBuilder(),
+      ),
+    );
+  }
+}

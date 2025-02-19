@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_chat/constants.dart';
 import 'package:flutter_chat/screens/chat_screen.dart';
 import 'package:flutter_chat/screens/login_screen.dart';
 
@@ -106,6 +107,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               child: MaterialButton(
                 onPressed: flag
                     ? () async {
+                        // this is for the loader or disabling the register button
                         setState(() {
                           flag = false;
                         });
@@ -116,10 +118,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             .createUserWithEmailAndPassword(
                                 email: email, password: password)
                             .then((onValue) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreen()));
+                          reDirectTo(context, () => LoginScreen(), state: this);
                         }, onError: (e) {
                           print(e);
                         });

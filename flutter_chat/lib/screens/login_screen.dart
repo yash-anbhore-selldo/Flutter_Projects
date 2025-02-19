@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat/constants.dart';
 import 'package:flutter_chat/screens/chat_screen.dart';
+import 'package:flutter_chat/screens/welcome_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,6 +12,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailTextController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
+
+  String email = '';
+  String password = '';
+
+  void _navigateToScreen(Widget screen) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+      (route) => false, // Removes all previous routes
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +52,12 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             AutofillGroup(
               child: TextField(
+                controller: emailTextController,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.black),
                 onChanged: (value) {
                   //Do something with the user input.
+                  email = value;
                 },
                 decoration: InputDecoration(
                   hintText: 'Enter your email',
@@ -69,6 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(color: Colors.black),
                 onChanged: (value) {
                   //Do something with the user input.
+                  password = value;
                 },
                 decoration: InputDecoration(
                   hintText: 'Enter your password.',
@@ -100,14 +120,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: () {
+                  onPressed: () async {
                     //Implement login functionality.
-                    if (FirebaseAuth.instance.currentUser != null) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ChatScreen()));
-                    }
+                    await _auth
+                        .signInWithEmailAndPassword(
+                            email: email, password: password)
+                        .then((onValue) async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.setBool("isLoggedIn", true);
+                      Navigator.pop(context, WelcomeScreen('data'));
+                      _navigateToScreen(ChatScreen());
+                    });
                   },
                   minWidth: 200.0,
                   height: 42.0,
