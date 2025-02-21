@@ -8,6 +8,7 @@ import 'package:flutter_chat/screens/welcome_screen.dart';
 import 'package:flutter_chat/screens/login_screen.dart';
 import 'package:flutter_chat/screens/registration_screen.dart';
 import 'package:flutter_chat/screens/chat_screen.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
@@ -37,6 +38,11 @@ class _FlashChatState extends State<FlashChat> {
     if (checklogin!) {
       isloggedin = true;
     }
+  }
+
+  Future<String> getAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    return packageInfo.version; // Returns the app version
   }
 
   @override
@@ -70,10 +76,15 @@ class _FlashChatState extends State<FlashChat> {
 
     final bool updateRequired = _remoteConfig.getBool('force_update');
     final String currentVersion = _remoteConfig.getString('current_version');
-    final String appVersion = _remoteConfig.getString('app_version');
-    data = appVersion;
 
-    return updateRequired && currentVersion.compareTo(appVersion) != 0;
+    // Get the app's current version
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final String appVersionapp = packageInfo.version;
+    if (currentVersion != appVersionapp) {
+      data = "$currentVersion - $appVersionapp";
+    }
+
+    return updateRequired && currentVersion.compareTo(appVersionapp) != 0;
   }
 
   Future<void> _setRemoteConfig() async {
@@ -97,13 +108,15 @@ class _FlashChatState extends State<FlashChat> {
         ),
       ),
       // home: updateRequiredshow && !showApp ? ShowDialog() : WelcomeScreen(data),
-      home: SplashScreen(),
+      // home: SplashScreen(),
 
-      initialRoute: "splash",
+      initialRoute: "welcome_screen",
       routes: {
         'welcome_screen': (context) =>
-            isloggedin ? ChatScreen() : WelcomeScreen(data),
-        // updateRequiredshow && !showApp ? ShowDialog() : WelcomeScreen(data),
+            // isloggedin ? ChatScreen() : WelcomeScreen(data),
+            updateRequiredshow && !showApp
+                ? WelcomeScreen(data)
+                : WelcomeScreen(data),
         'chat_screen': (context) => ChatScreen(),
         'splash': (context) => SplashScreen(),
         'login_screen': (context) => LoginScreen(),
@@ -113,52 +126,52 @@ class _FlashChatState extends State<FlashChat> {
   }
 }
 
-// class ShowDialog extends StatefulWidget {
-//   @override
-//   State<ShowDialog> createState() => _ShowDialogState();
-// }
-//
-// class _ShowDialogState extends State<ShowDialog> {
-//   void _openPlayStore() async {
-//     setState(() {
-//       showApp = true;
-//     });
-//     // Uncomment the following lines to open the Play Store link.
-//     // const playStoreUrl =
-//     //     "https://play.google.com/store/apps/details?id=com.sell.do";
-//     // if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
-//     //   await launchUrl(Uri.parse(playStoreUrl),
-//     //       mode: LaunchMode.externalApplication);
-//     // } else {
-//     //   debugPrint("Could not launch Play Store.");
-//     // }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: Container(
-//           color: Colors.blueAccent,
-//           padding: EdgeInsets.all(20),
-//           child: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               Text(
-//                 "An update is required!",
-//                 style: TextStyle(color: Colors.white, fontSize: 18),
-//               ),
-//               SizedBox(height: 20),
-//               ElevatedButton(
-//                 onPressed: () {
-//                   _openPlayStore();
-//                 },
-//                 child: Text("Update Now"),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+class ShowDialog extends StatefulWidget {
+  @override
+  State<ShowDialog> createState() => _ShowDialogState();
+}
+
+class _ShowDialogState extends State<ShowDialog> {
+  void _openPlayStore() async {
+    setState(() {
+      showApp = true;
+    });
+    // Uncomment the following lines to open the Play Store link.
+    // const playStoreUrl =
+    //     "https://play.google.com/store/apps/details?id=com.sell.do";
+    // if (await canLaunchUrl(Uri.parse(playStoreUrl))) {
+    //   await launchUrl(Uri.parse(playStoreUrl),
+    //       mode: LaunchMode.externalApplication);
+    // } else {
+    //   debugPrint("Could not launch Play Store.");
+    // }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Container(
+          color: Colors.blueAccent,
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "An update is required!",
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  _openPlayStore();
+                },
+                child: Text("Update Now"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

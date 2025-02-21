@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat/constants.dart';
 import 'package:flutter_chat/screens/chat_screen.dart';
@@ -14,6 +15,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late SharedPreferences prefs;
   String? email;
+  final _auth = FirebaseAuth.instance;
+  var fireuser;
 
   @override
   void initState() {
@@ -29,7 +32,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void getData() async {
-    email = await prefs.getString('email');
+    fireuser = _auth.currentUser;
+
+    email = fireuser.email;
   }
 
   void logoutUser() async {
@@ -81,7 +86,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   radius: 60,
                   backgroundImage: AssetImage('images/logo.png'),
                 ),
-                Text(email ?? "Loading..."),
+                Text(
+                  email ?? "Loading...",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
               ],
             ),
           ),

@@ -22,6 +22,7 @@ dependencies:
   cloud_firestore: ^5.6.3
   firebase_remote_config: ^5.4.0
   shared_preferences: ^2.5.2
+  package_info_plus: ^8.2.1
 #  url_launcher: ^6.3.1
 #  upgrader: ^11.3.1
 

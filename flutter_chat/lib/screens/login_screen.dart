@@ -32,6 +32,20 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: Text("Login"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.home),
+              color: Colors.white,
+              // You can change the icon as needed
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => WelcomeScreen(
+                            "showData")) // Replace with your welcome screen route
+                    );
+              }),
+        ],
       ),
       backgroundColor: Colors.white,
       body: Padding(

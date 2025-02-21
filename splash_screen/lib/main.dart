@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Duration(seconds: 3),
       () {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            context, MaterialPageRoute(builder: (context) => SplashScreen()));
       },
     );
   }
@@ -55,7 +55,6 @@ class _SplashScreenState extends State<SplashScreen> {
             fit: BoxFit.cover,
           ),
         ),
-
         Align(
           alignment: Alignment.center,
           child: Padding(
@@ -81,14 +80,5 @@ class _SplashScreenState extends State<SplashScreen> {
         )
       ],
     ));
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text("data"),
-    );
   }
 }
