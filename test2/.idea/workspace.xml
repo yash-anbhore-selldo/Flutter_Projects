@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3b1d660-8b8d-4202-bdcf-631cef3f9778" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../state_management/lib/provider/list_provider.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../state_management/lib/screens/list_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../bitcoin-ticker-flutter" beforeDir="false" afterPath="$PROJECT_DIR$/../bitcoin-ticker-flutter" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../bitcoin-ticker-flutter/lib/coin_data.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../bitcoin-ticker-flutter/lib/main.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../bitcoin-ticker-flutter/lib/price_screen.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../bitcoin-ticker-flutter/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../bitcoin-ticker-flutter/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../bitcoin-ticker-flutter/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../bitcoin-ticker-flutter/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../flutter_chat/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../flutter_chat/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../state_management/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../state_management/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../state_management/lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../state_management/lib/screens/home_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
