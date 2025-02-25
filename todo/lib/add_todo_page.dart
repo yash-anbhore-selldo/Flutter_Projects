@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/bloc/todo_bloc.dart';
 import 'package:todo/model/todo_model.dart';
+import 'package:todo/riverpod/todo_provider.dart';
 
-class AddTodoPage extends StatefulWidget {
-  const AddTodoPage({super.key});
+class AddTodoPage extends ConsumerWidget {
+  AddTodoPage({super.key});
 
-  @override
-  State<AddTodoPage> createState() => _AddTodoPageState();
-}
-
-class _AddTodoPageState extends State<AddTodoPage> {
   final todolistController = TextEditingController();
+
   final todo_desc_Controller = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Todos"),
@@ -37,13 +35,9 @@ class _AddTodoPageState extends State<AddTodoPage> {
             ElevatedButton(
                 onPressed: () {
                   if (todolistController.text.isNotEmpty) {
-                    context.read<TodoBloc>().add(
-                          AddTodo(Todo(
-                            title: todolistController.text,
-                            description: todo_desc_Controller.text,
-                            createdAt: DateTime.now(),
-                          )),
-                        );
+                    ref.read(todoProvider.notifier).addTodo(
+                        todolistController.text, todo_desc_Controller.text);
+
                     todolistController.clear();
                     todo_desc_Controller.clear();
                   }
