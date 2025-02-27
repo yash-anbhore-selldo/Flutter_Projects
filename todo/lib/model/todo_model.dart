@@ -1,10 +1,14 @@
+// todo_model.dart
 class Todo {
-  String title = "sss";
-  String description = "";
+  String title;
+  String description;
   final DateTime createdAt;
+  bool isCompleted;
 
-  Todo(
-      {required this.title,
-      required this.description,
-      required this.createdAt});
+  Todo({
+    required this.title,
+    required this.description,
+    required this.createdAt,
+    this.isCompleted = false,
+  });
 }

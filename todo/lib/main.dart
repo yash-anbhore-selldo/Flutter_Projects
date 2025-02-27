@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         initialRoute: '/',
-        routes: {'/': (_) => TodoList(), '/addtodo': (_) => AddTodoPage()},
+        routes: {
+          '/': (_) => TodoList(),
+        },
       ),
     );
   }

@@ -10,12 +10,34 @@ import 'package:todo/model/todo_model.dart';
 class TodoNotifier extends StateNotifier<List<Todo>> {
   TodoNotifier() : super([]);
 
-  void addTodo(String title, String description) {
+  void addTodo(String title, String description, datetime) {
     //the type of state is List<Todo> because StateNotifier<List<Todo>> initial super([]);
     state = [
       ...state,
-      Todo(title: title, description: description, createdAt: DateTime.now())
+      Todo(title: title, description: description, createdAt: datetime)
     ];
+  }
+
+  void toggleTodoStatus(int index) {
+    final List<Todo> updatedList = List.from(state);
+    updatedList[index] = Todo(
+      title: updatedList[index].title,
+      description: updatedList[index].description,
+      createdAt: updatedList[index].createdAt,
+      isCompleted: !updatedList[index].isCompleted,
+    );
+    state = updatedList;
+  }
+
+  void editTodo(int index, String title, String description) {
+    final List<Todo> updatedList = List.from(state);
+    updatedList[index] = Todo(
+      title: title,
+      description: description,
+      createdAt: updatedList[index].createdAt,
+      isCompleted: updatedList[index].isCompleted,
+    );
+    state = updatedList;
   }
 
   void removeTodo(int index) {
