@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo/add_todo_page.dart';
 import 'package:todo/bloc/todo_bloc.dart';
 import 'package:todo/todo_list.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const ProviderScope(
-    child: MyApp(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +15,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => TodoBloc(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Todo App',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,

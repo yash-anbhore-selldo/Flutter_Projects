@@ -1,63 +1,82 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todo/model/todo_model.dart';
-
-//http://bit.ly/43czKKe
-
-//In this it has 2 thing
-// 1. StateNotifier - It updates the state and notify listeners when state changes
-// 2. StateNotifierProvider - makes the state accessible to the widget
-
-class TodoNotifier extends StateNotifier<List<Todo>> {
-  TodoNotifier() : super([]);
-
-  void addTodo(String title, String description, datetime) {
-    //the type of state is List<Todo> because StateNotifier<List<Todo>> initial super([]);
-    state = [
-      ...state,
-      Todo(title: title, description: description, createdAt: datetime)
-    ];
-  }
-
-  void toggleTodoStatus(int index) {
-    final List<Todo> updatedList = List.from(state);
-    updatedList[index] = Todo(
-      title: updatedList[index].title,
-      description: updatedList[index].description,
-      createdAt: updatedList[index].createdAt,
-      isCompleted: !updatedList[index].isCompleted,
-    );
-    state = updatedList;
-  }
-
-  void editTodo(int index, String title, String description) {
-    final List<Todo> updatedList = List.from(state);
-    updatedList[index] = Todo(
-      title: title,
-      description: description,
-      createdAt: updatedList[index].createdAt,
-      isCompleted: updatedList[index].isCompleted,
-    );
-    state = updatedList;
-  }
-
-  void removeTodo(int index) {
-    //test tht is it working properly it may only return the deleted ele.
-
-    //check its not working
-    // state = List.from(state).removeAt(index);
-
-    // we can also do this
-    //it gives an error for newlist as List<dynamic>
-    //so specify the type
-    //A value of type 'List<dynamic>'
-    // can't be assigned to a variable of type 'List<Todo>
-    final List<Todo> newlist = List.from(state);
-    newlist.removeAt(index);
-    state = newlist;
-  }
-}
-
-//in StateNotifierProvider we provide the generic type of <TodoNotifier, List<Todo>>
-final todoProvider = StateNotifierProvider<TodoNotifier, List<Todo>>((ref) {
-  return TodoNotifier();
-});
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:todo/database/todo_repo.dart';
+// import 'package:todo/model/todo_model.dart';
+//
+// final todoRepositoryProvider = Provider<TodoRepository>((ref) {
+//   return TodoRepository();
+// });
+//
+// class TodoNotifier extends StateNotifier<List<Todo>> {
+//   final TodoRepository _repository;
+//
+//   TodoNotifier(this._repository) : super([]) {
+//     loadTodos();
+//   }
+//
+//   Future<void> loadTodos() async {
+//     final todos = await _repository.getAllTodos();
+//     state = todos;
+//   }
+//
+//   Future<void> addTodo(
+//       String title, String description, DateTime datetime) async {
+//     final todo =
+//         Todo(title: title, description: description, createdAt: datetime);
+//
+//     final id = await _repository.insertTodo(todo);
+//     todo.id = id;
+//
+//     state = [...state, todo];
+//   }
+//
+//   Future<void> toggleTodoStatus(int index) async {
+//     final List<Todo> updatedList = List.from(state);
+//     final todo = updatedList[index];
+//
+//     final updatedTodo = Todo(
+//       id: todo.id,
+//       title: todo.title,
+//       description: todo.description,
+//       createdAt: todo.createdAt,
+//       isCompleted: !todo.isCompleted,
+//     );
+//
+//     await _repository.updateTodo(updatedTodo);
+//     updatedList[index] = updatedTodo;
+//     state = updatedList;
+//   }
+//
+//   Future<void> editTodo(int index, String title, String description) async {
+//     final List<Todo> updatedList = List.from(state);
+//     final todo = updatedList[index];
+//
+//     final updatedTodo = Todo(
+//       id: todo.id,
+//       title: title,
+//       description: description,
+//       createdAt: todo.createdAt,
+//       isCompleted: todo.isCompleted,
+//     );
+//
+//     await _repository.updateTodo(updatedTodo);
+//     updatedList[index] = updatedTodo;
+//     state = updatedList;
+//   }
+//
+//   Future<void> removeTodo(int index) async {
+//     final List<Todo> newlist = List.from(state);
+//     final todo = newlist[index];
+//
+//     if (todo.id != null) {
+//       await _repository.deleteTodo(3);
+//     }
+//
+//     newlist.removeAt(index);
+//     state = newlist;
+//   }
+// }
+//
+// final todoProvider = StateNotifierProvider<TodoNotifier, List<Todo>>((ref) {
+//   final repository = ref.watch(todoRepositoryProvider);
+//   return TodoNotifier(repository);
+// });

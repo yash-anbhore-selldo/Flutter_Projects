@@ -34,6 +34,7 @@ class _StudentListScreenState extends State<StudentListScreen> {
   @override
   void initState() {
     super.initState();
+    //Future<List<Student>>
     _students = ApiforStud().fetchStudent();
   }
 
